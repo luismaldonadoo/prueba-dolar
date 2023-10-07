@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DashboardController!{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+        
+        document.addEventListener("DOMContentLoaded", () => {
+            let year = document.getElementById('year').value = '{{ year }}';
+            let month = document.getElementById('month').value = '{{ month }}';
+
+            {# const search = document.getElementById('search')
+            search.addEventListener('click', () => {
+                alert("buscando")
+                fetch(`dolar-data/2023/10`)
+                    .then(response => response.json())
+                    .then(data => console.log(data));
+            }) #}
+        });
+
+    </script>
+{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    ul {  
+        list-style-type: none;  
+        font-weight: bold;  
+        font-size: 20px;  
+    }  
+</style>
+
+<div class="example-wrapper">
+    <h1>Valor Dolar 💸</h1>
+    <form method="POST" >
+        <ul>
+            <li>
+                <label>Año</label>
+                    <select name="year" id="year" class="" onchange="">
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                </select>
+            </li>
+            <li>
+                <label>Mes</label>
+                    <select name="month" id="month" class="" >
+                    <option value="01">ENERO</option>
+                    <option value="02">FEBRERO</option>
+                    <option value="03">MARZO</option>
+                    <option value="04">ABRIL</option>
+                    <option value="05">MAYO</option>
+                    <option value="06">JUNIO</option>
+                    <option value="07">JULIO</option>
+                    <option value="08">AGOSTO</option>
+                    <option value="09">SEPTIEMBRE</option>
+                    <option value="10">OCTUBRE</option>
+                    <option value="11">NOVIEMBRE</option>
+                    <option value="12">DICIEMBRE</option>
+                </select>
+            </li>
+            <li>
+                <button name="search" id="search">Buscar</button>
+            </li>
+        </ul>
+    </form>
+
+    
+    {% if data|length>=1 %}
+        <a href="{{ path('app_download_data', { 'year': year, 'month': month }) }}" target="_blank"> Descargar Datos </a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%  for item in data.Dolares %}
+                    <tr>
+                        <td>{{ item.Fecha }}</td>
+                        <td>{{ item.Valor }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock %}
