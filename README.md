@@ -1,7 +1,7 @@
-Para  ejecutar projecto 
-composer install
-symfony server:start
+**Para  ejecutar projecto**<br>
+composer install<br>
+symfony server:start<br>
 
-valores para .env
-API_KEY='api_key'
-API_URL='https://api.sbif.cl/api-sbifv3/recursos_api/'
+**valores para .env**<br>
+API_KEY='api_key'<br>
+API_URL='https://api.sbif.cl/api-sbifv3/recursos_api/'<br>
